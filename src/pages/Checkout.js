@@ -47,7 +47,7 @@ export const Checkout = (props) => {
                 {/* Page header */}
                 <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
                   <h1 className="h1 mb-4">Aproape gata..</h1>
-                  <p className="text-xl text-gray-600">Te rugăm să te asiguri că datele introduse sunt corecte.</p>
+                  <p className="text-xl text-gray-600">Generează actele de care ai nevoie.</p>
                 </div>
   
                 <div className="max-w-3xl mx-auto pb-12 md:pb-20">

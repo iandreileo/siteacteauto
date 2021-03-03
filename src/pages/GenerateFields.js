@@ -57,23 +57,27 @@ function GenerateFields() {
                 <p className="text-xl text-gray-600">Mai jos trebuie să completați datele necesare pentru generare actelor selectate.</p>
               </div>
 
-
               {/* Form */}
-              <div className="max-w-md mx-auto">
+              <div className="w-full  mx-auto p-8 shadow-md">
                 <form>
                 {
-                    activeDocuments.map((document) => {
-                          console.log(document.fields)
+                    activeDocuments.map((document, key) => {
                           return (
-                            document.fields.map((field, key) => 
-                              <div className="flex flex-wrap -mx-3 mb-4" key={key}>
-                                {key === 0 ? <h4 className="h4 mb-4">{document.name}</h4>: ""}
-                              <div className="w-full px-3">
-                                <label className="block text-gray-800 text-sm font-medium mb-1"> {field.fieldLabel} <span className="text-red-600">*</span></label>
-                                <input id={field.fieldName} value={data[field.fieldName]} onChange={handleOnChange} type="text" className="form-input w-full text-gray-800" placeholder={`Introdu ${field.fieldLabel}`} required />
+                            <div className="tab w-full overflow-hidden border-t pt-4" key={key}>
+                              <input className="absolute opacity-0" id={`tab-multi-${document.id}`} type="checkbox" name="tabs"/>
+                              <label className="block p-5 leading-normal cursor-pointer" htmlFor={`tab-multi-${document.id}`}>{document.name}</label>
+                              <div className="tab-content overflow-hidden border-l-2 bg-gray-100 border-blue-500 leading-normal">
+                                {document.fields.map((field, key) => 
+                                <div className="flex flex-wrap -mx-3 mb-4" key={key}>
+                                <div className="w-full px-8">
+                                  <label className="block text-gray-800 text-sm font-medium mb-1"> {field.fieldLabel} <span className="text-red-600">*</span></label>
+                                  <input id={field.fieldName} value={data[field.fieldName]} onChange={handleOnChange} type="text" className="form-input w-full text-gray-800" placeholder={`Introdu ${field.fieldLabel}`} required />
+                                </div>
+                                </div>
+                              )}
                               </div>
-                              </div>
-                          ))
+                          </div>
+                          )
                     })
                 }
                   <div className="flex flex-wrap -mx-3 mt-6">
