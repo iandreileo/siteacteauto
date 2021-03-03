@@ -31,7 +31,7 @@ function GenerateFields() {
     })
     if(ok) {
       // Fetch to server
-      history.push("/checkout");
+      history.push("/payment");
     }
     
   }

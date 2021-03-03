@@ -15,7 +15,7 @@ import SelectDocuments from './pages/SelectDocuments';
 import GenerateFields from './pages/GenerateFields';
 import { Checkout } from './pages/Checkout';
 import Footer from './partials/Footer';
-
+import Payment from './pages/Payments'
 function App() {
 
   const location = useLocation();
@@ -53,6 +53,10 @@ function App() {
         <Route path="/checkout">
           <Checkout />
           <Footer />
+        </Route>
+        <Route path="/payment">
+          <Payment/>
+          <Footer/>
         </Route>
       </Switch>
     </>
