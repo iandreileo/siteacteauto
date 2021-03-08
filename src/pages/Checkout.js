@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { generateDocuments } from '../api/generateDocuments';
 import Header from '../partials/Header';
@@ -7,12 +7,11 @@ import { DataContext } from '../providers/DataProvider';
 
 export const Checkout = (props) => {
     
-    const [activeDocuments] = useContext(ActiveDocumentsContext);
-    const [data] = useContext(DataContext);
+    const activeDocuments = JSON.parse(sessionStorage.getItem("activeDocuments"));
+    const data = JSON.parse(sessionStorage.getItem("data"));
 
     const generate = (document) => {
         let fieldData = {};
-
         activeDocuments[activeDocuments.indexOf(document)].fields.forEach((item) => {
             console.log(data, item.fieldName, data[item.fieldName]);
             fieldData[item.fieldName] = data[item.fieldName];
@@ -33,7 +32,6 @@ export const Checkout = (props) => {
 
     return (
         <div className="flex flex-col min-h-screen overflow-hidden">
-
         {/*  Site header */}
         <Header />
   
