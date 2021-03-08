@@ -25,7 +25,7 @@ const ProductDisplay = ({ handleClick, activeDocuments }) => (
                 <h2 class="text-center font-bold uppercase mb-4">Total: {activeDocuments.length * 5} lei</h2>
             </div>
             <div class="w-full">
-                <button class="font-bold bg-gray-600 hover:bg-gray-700 text-white rounded-md px-10 py-2 transition-colors w-full">Checkout</button>
+                <button class="font-bold bg-gray-600 hover:bg-gray-700 text-white rounded-md px-10 py-2 transition-colors w-full" onClick={handleClick}>Checkout</button>
             </div>
         </div>
     </section>
