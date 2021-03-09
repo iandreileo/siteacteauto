@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ConfirmModal from '../partials/ConfirmModal';
 
 import Header from '../partials/Header';
@@ -13,6 +13,7 @@ function SelectDocuments() {
   const [refresh, setRefresh] = useState(1);
   const [modal, setModal] = useState(false);
   const [select, setSelect] = useState(false);
+
 
   const addToLocalList = (document) => {
     // Check if id exist
@@ -63,16 +64,24 @@ function SelectDocuments() {
               <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
                 <h1 className="h1">Bine ai venit! Începe procesul de generare.</h1>
                 <p className="text-xl text-gray-600">Selectează actele pe care le dorești generate.</p>
+              </div>
 
+              <div className="text-center mb-8">
+                <label htmlFor="toggle" class="text-xs text-gray-700">Documente individuale</label>
+                <div class="relative inline-block w-10 mr-2 ml-2 align-middle select-none transition duration-200 ease-in">
+                  <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                  <label htmlFor="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+                <label htmlFor="toggle" class="text-xs text-gray-700">Dosare complete</label>
               </div>
 
               <section className="flex md:flex-row items-center justify-around flex-wrap sm:flex-col">
                 
               {
                 refresh && documents.documents.map((document, key) => {
-                  
+                  console.log(document);
                   return (
-                    activeDocuments.includes(document) ?
+                    activeDocuments.includes(document) ||  checkIfDocumentActive(document.id, activeDocuments) ?
                     <div className="h-40 w-40 relative cursor-pointer mb-5 align-middle" key={key} onClick={() => addToLocalList(document)}>
                       <div className="absolute inset-0 bg-white opacity-25 rounded-lg shadow-2xl"></div>
                       <div className="absolute inset-0 transform  hover:rotate-45 transition duration-200">
@@ -130,6 +139,17 @@ function SelectDocuments() {
 
     </div>
   );
+}
+
+const checkIfDocumentActive = (id, activeDocuments) => {
+  let i, exist = 0;
+  for(i = 0; i < activeDocuments.length; i++) {
+    if(activeDocuments[i].id === id) {
+      exist = 1;
+      break;
+    }
+  }
+  return exist;
 }
 
 export default SelectDocuments;

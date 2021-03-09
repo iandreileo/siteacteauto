@@ -32,6 +32,8 @@ function GenerateFields() {
     if(ok) {
       // Fetch to server
       history.push("/payment");
+      sessionStorage.setItem("activeDocuments", JSON.stringify(activeDocuments));
+      sessionStorage.setItem("data", JSON.stringify(data));
     }
     
   }

@@ -6,7 +6,7 @@ import { ActiveDocumentsContext } from '../providers/ActiveDocumentsProvider';
 import { DataContext } from '../providers/DataProvider';
 
 export const Checkout = (props) => {
-    
+
     const activeDocuments = JSON.parse(sessionStorage.getItem("activeDocuments"));
     const data = JSON.parse(sessionStorage.getItem("data"));
 
@@ -24,14 +24,15 @@ export const Checkout = (props) => {
         };
         generateDocuments(fetchingData);
     }
-
+    
     if(activeDocuments.length === 0 || data === []) {
         return <Redirect to='/select'  />
     }
 
 
+
     return (
-        <div className="flex flex-col min-h-screen overflow-hidden">
+        <div className="flex flex-col overflow-hidden">
         {/*  Site header */}
         <Header />
   
@@ -41,11 +42,12 @@ export const Checkout = (props) => {
           <section className="bg-gradient-to-b from-gray-100 to-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
               <div className="pt-32 pb-12 md:pt-40 md:pb-20">
+                <div className="w-full md:max-w-none bg-white px-8 md:px-10 py-8 md:py-10 mb-3 mx-auto md:my-2 rounded-md shadow-lg shadow-gray-600 md:flex md:flex-col">
   
                 {/* Page header */}
                 <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-                  <h1 className="h1 mb-4">Aproape gata..</h1>
-                  <p className="text-xl text-gray-600">Generează actele de care ai nevoie.</p>
+                  <h1 className="h1 mb-4">Îți mulțumim!</h1>
+                  <p className="text-md text-gray-600">Comanda ta a fost procesată cu succes și ti-am generat mai jos actele de care ai nevoie.</p>
                 </div>
   
                 <div className="max-w-3xl mx-auto pb-12 md:pb-20">
@@ -56,13 +58,9 @@ export const Checkout = (props) => {
                         {
                             activeDocuments.map((document, key) => {
                                 return (
-                                    // <div className="w-full" key={key}>
-                                    //     <p className="w-40 inline ">{document.name}</p>
-                                    //     <button className="btn text-white bg-green-600 hover:bg-blue-700 ring-4 ring-red-300 ml-2 inline " onClick={() => generate(document.id)}>Generează</button>
-                                    // </div>
                                         <tr key={key} className="mb-4"> 
                                             <td><p>{document.name}</p></td>
-                                            <td><button className="btn text-white bg-green-600 hover:bg-blue-700 ring-4 ring-red-300 ml-2 inline " onClick={() => generate(document)}>Generează</button></td>
+                                            <td><button className="btn text-white bg-green-600 hover:bg-blue-700 ring-4 ring-red-300 ml-2 inline " onClick={() => generate(document)}>Descarcă</button></td>
                                         </tr>
                                 )
                             })
@@ -70,7 +68,7 @@ export const Checkout = (props) => {
                     </table>
                   {/* </div> */}
                 </div>
-
+                </div>
               </div>
             </div>
           </section>
