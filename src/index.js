@@ -6,10 +6,12 @@ import * as serviceWorker from './serviceWorker';
 import {DocumentsProvider} from './providers/DocumentsProvider'
 import { DataProvider } from './providers/DataProvider';
 import { ActiveDocumentsProvider } from './providers/ActiveDocumentsProvider';
+import { FilesProvider } from './providers/Dosare';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <FilesProvider>
       <DocumentsProvider>
         <DataProvider>
           <ActiveDocumentsProvider>
@@ -17,6 +19,7 @@ ReactDOM.render(
           </ActiveDocumentsProvider>
         </DataProvider>
       </DocumentsProvider>
+      </FilesProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
